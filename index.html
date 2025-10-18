@@ -12,7 +12,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Font Awesome -->
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   
   <!-- Anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -398,6 +398,8 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
     
+
+    
     .btn-primary {
       background: linear-gradient(135deg, #7C3AED, #C4B5FD);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -453,8 +455,7 @@
 <body class="bg-dark text-light">
   <!-- 应用标志 -->
   <div class="fixed top-4 left-4 z-50 flex items-center space-x-2 bg-dark bg-opacity-80 p-2 rounded-lg backdrop-blur">
-    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/12061d1a647b4dc3b61daed93ee051a8~tplv-a9rns2rl98-image.image?rcl=2025101716201133F523E5A6B92AEA774F&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1763281250&x-signature=%2F9SRCWGVZYuBZLZVw4kpqmUwQEg%3D" alt="情侣同步观影" class="w-8 h-8">
-    <h1 class="text-xl font-display text-white">情侣同步观影</h1>
+    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/12061d1a647b4dc3b61daed93ee051a8~tplv-a9rns2rl98-image.image?rcl=2025101716201133F523E5A6B92AEA774F&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1763281250&x-signature=%2F9SRCWGVZYuBZLZVw4kpqmUwQEg%3D" alt="应用图标" class="w-8 h-8">
   </div>
 
   <!-- 房间状态栏 -->
@@ -527,7 +528,7 @@
           </div>
         </div>
         
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-3 ml-8">
           <!-- 同步按钮 -->
           <button id="syncBtn" class="text-white hover:text-primary transition-colors relative">
             <i class="fa fa-refresh"></i>
@@ -552,7 +553,7 @@
           
           <!-- 更多按钮 -->
           <button id="moreBtn" class="text-white hover:text-primary transition-colors">
-            <i class="fa fa-ellipsis-v"></i>
+            <i class="fa fa-bars text-xl"></i>
           </button>
         </div>
       </div>
@@ -672,31 +673,7 @@
       <div>
         <h3 class="text-lg font-medium text-white mb-3">成员列表</h3>
         <div id="membersList" class="space-y-3">
-          <div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-            <div class="flex items-center">
-              <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3">
-                我
-              </div>
-              <div>
-                <div class="text-white">我</div>
-                <div class="text-xs text-green-400">在线</div>
-              </div>
-            </div>
-            <div class="text-xs bg-gray-700 px-2 py-1 rounded-full">房主</div>
-          </div>
-          
-          <div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-            <div class="flex items-center">
-              <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-medium mr-3">
-                你
-              </div>
-              <div>
-                <div class="text-white">我的爱人</div>
-                <div class="text-xs text-gray-400">离线</div>
-              </div>
-            </div>
-            <div class="text-xs bg-gray-700 px-2 py-1 rounded-full">member</div>
-          </div>
+          <!-- 动态生成的成员列表 -->
         </div>
       </div>
     </div>
@@ -712,21 +689,7 @@
     </div>
     
     <div id="messagesContainer" class="flex-1 overflow-y-auto space-y-3 mb-4 scrollbar-hide">
-      <div class="message received">
-        <p>嗨，宝贝！准备好一起看电影了吗？</p>
-      </div>
-      
-      <div class="message sent">
-        <p>当然啦！我已经选好了一部浪漫的电影 😊</p>
-      </div>
-      
-      <div class="message received">
-        <p>太好了！我已经加入房间了，你能看到我吗？</p>
-      </div>
-      
-      <div class="message sent">
-        <p>可以看到你在线了！让我们开始吧 ❤️</p>
-      </div>
+      <!-- 聊天消息将在这里动态显示 -->
     </div>
     
     <!-- 快捷表情 -->
@@ -767,96 +730,11 @@
           添加
         </button>
       </div>
-      
-      <!-- 上传视频 -->
-      <div class="mt-4">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-white text-sm">上传视频文件</h3>
-          <span id="uploadStatus" class="text-xs text-gray-400"></span>
-        </div>
-        
-        <div class="flex">
-          <label class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-2 text-white cursor-pointer hover:bg-gray-700 transition-colors">
-            <i class="fa fa-folder-open mr-2"></i>
-            <span id="fileName">选择文件</span>
-            <input type="file" id="videoFileInput" accept="video/*" class="hidden">
-          </label>
-          <button id="uploadVideoBtn" class="bg-secondary hover:bg-secondary-light text-white px-4 py-2 rounded-r-lg transition-colors">
-            上传
-          </button>
-        </div>
-        
-        <!-- 上传进度条 -->
-        <div id="uploadProgressContainer" class="hidden mt-2 h-2 bg-gray-700 rounded-full overflow-hidden">
-          <div id="uploadProgressBar" class="h-full bg-secondary" style="width: 0%"></div>
-        </div>
-      </div>
     </div>
     
     <!-- 视频列表 -->
     <div id="videosList" class="space-y-4">
-      <div class="video-item bg-gray-800 rounded-lg overflow-hidden">
-        <div class="relative">
-          <img src="https://p26-doubao-search-sign.byteimg.com/labis/2827743b424861cfbace13c34b978be9~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=tmqZUgrX3rhL4PRMb8q4tzD3bXA%3D" alt="电影1" class="w-full h-40 object-cover">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-            <span class="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded">02:15:30</span>
-          </div>
-          <button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 flex items-center justify-center text-white hover:bg-primary transition-colors">
-            <i class="fa fa-play"></i>
-          </button>
-        </div>
-        <div class="p-3">
-          <h3 class="text-white font-medium mb-1">浪漫爱情故事</h3>
-          <div class="flex justify-between items-center text-xs text-gray-400">
-            <span>添加于 2023-07-15</span>
-            <button class="text-red-400 hover:text-red-500">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="video-item bg-gray-800 rounded-lg overflow-hidden">
-        <div class="relative">
-          <img src="https://p11-doubao-search-sign.byteimg.com/labis/860a0b8b4df681427f07f94673afc402~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873254&x-signature=%2Fj5dHcoK870H%2Bg%2BLR1JQZWorq28%3D" alt="电影2" class="w-full h-40 object-cover">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-            <span class="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded">01:48:22</span>
-          </div>
-          <button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 flex items-center justify-center text-white hover:bg-primary transition-colors">
-            <i class="fa fa-play"></i>
-          </button>
-        </div>
-        <div class="p-3">
-          <h3 class="text-white font-medium mb-1">星空奇遇记</h3>
-          <div class="flex justify-between items-center text-xs text-gray-400">
-            <span>添加于 2023-07-10</span>
-            <button class="text-red-400 hover:text-red-500">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="video-item bg-gray-800 rounded-lg overflow-hidden">
-        <div class="relative">
-          <img src="https://p26-doubao-search-sign.byteimg.com/labis/image/657380b2a51dec0497d5d38ad0e659ae~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=C461oUTx9TD5uWbtCj0e5OXuq0A%3D" alt="电影3" class="w-full h-40 object-cover">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-            <span class="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded">02:05:15</span>
-          </div>
-          <button class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 flex items-center justify-center text-white hover:bg-primary transition-colors">
-            <i class="fa fa-play"></i>
-          </button>
-        </div>
-        <div class="p-3">
-          <h3 class="text-white font-medium mb-1">电影院的回忆</h3>
-          <div class="flex justify-between items-center text-xs text-gray-400">
-            <span>添加于 2023-07-05</span>
-            <button class="text-red-400 hover:text-red-500">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <!-- 动态生成的视频列表 -->
     </div>
   </div>
 
@@ -963,9 +841,237 @@
       unreadSyncs: 0,
       isDanmakuEnabled: true,
       danmakuList: [],
-      currentUploadFile: null
+      currentUploadFile: null,
+      ws: null // WebSocket连接对象
     };
+
+    // WebSocket连接URL - 根据部署环境动态生成
+    function getWebSocketUrl() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const host = window.location.host;
+      
+      // 如果是Netlify部署，使用外部WebSocket服务
+      if (window.location.hostname.includes('netlify.app')) {
+        // 这里需要替换为你的实际WebSocket服务器地址
+        // 你可以使用 Render, Railway, Heroku 等服务部署WebSocket服务器
+        return 'wss://your-websocket-server.onrender.com/ws';
+      }
+      
+      // 本地开发环境或其他部署环境
+      return `${protocol}//${host}/ws`;
+    }
+
+    const wsUrl = getWebSocketUrl();
     
+    // 连接WebSocket
+    function connectWebSocket() {
+      // 如果已经有连接，先关闭
+      if (appState.ws) {
+        appState.ws.close();
+      }
+      
+      // 创建新连接
+      appState.ws = new WebSocket(wsUrl);
+      
+      appState.ws.onopen = () => {
+        console.log('WebSocket连接已建立');
+        showToast('WebSocket连接已建立');
+      };
+      
+      appState.ws.onmessage = (event) => {
+        handleWebSocketMessage(event.data);
+      };
+      
+      appState.ws.onclose = () => {
+        console.log('WebSocket连接已关闭');
+        appState.partnerConnected = false;
+        updateRoomStatus();
+        showToast('连接已断开，请重新加入房间');
+      };
+      
+      appState.ws.onerror = (error) => {
+        console.error('WebSocket错误:', error);
+        showToast('连接出错，请重试');
+        showMobileLoader(false);
+      };
+    }
+
+    // 处理WebSocket消息
+    function handleWebSocketMessage(message) {
+      try {
+        const data = JSON.parse(message);
+        
+        switch (data.type) {
+          case 'ROOM_CREATED':
+            // 房间创建成功
+            appState.roomId = data.roomId;
+            appState.isHost = true;
+            appState.maxMembers = data.maxMembers || 2;
+            
+            // 更新房间信息
+            if (roomInfoId) roomInfoId.textContent = data.roomId;
+            if (roomInfoTime) roomInfoTime.textContent = new Date().toLocaleString();
+            if (roomInfoMembers) roomInfoMembers.textContent = `1/${appState.maxMembers}`;
+            
+            // 更新顶部状态栏
+            if (roomId) roomId.textContent = data.roomId;
+            if (roomStatus) roomStatus.style.opacity = '1';
+            
+            // 立即更新成员列表显示房主
+            updateMembersList();
+            
+            // 显示成功提示
+            showToast(`房间创建成功！房间ID: ${data.roomId}`);
+            showMobileLoader(false);
+            break;
+            
+          case 'JOINED_ROOM':
+            // 加入房间成功
+            appState.roomId = data.roomId;
+            appState.isHost = data.isHost;
+            appState.maxMembers = data.maxMembers || 2;
+            
+            // 更新房间信息
+            if (roomInfoId) roomInfoId.textContent = data.roomId;
+            if (roomInfoTime) roomInfoTime.textContent = new Date().toLocaleString();
+            if (roomInfoMembers) roomInfoMembers.textContent = data.memberCount + '/' + appState.maxMembers;
+            
+            // 更新顶部状态栏
+            if (roomId) roomId.textContent = data.roomId;
+            if (roomStatus) roomStatus.style.opacity = '1';
+            
+            // 显示成功提示
+            showToast(`成功加入房间: ${data.roomId}`);
+            showMobileLoader(false);
+            
+            // 如果有其他成员，更新连接状态
+            if (data.memberCount > 1) {
+              appState.partnerConnected = true;
+              appState.partnerName = data.partnerName || '我的爱人';
+              updateRoomStatus();
+            }
+            
+            // 更新成员列表
+            updateMembersList();
+            break;
+            
+          case 'PARTNER_JOINED':
+            // 伴侣加入
+            appState.partnerConnected = true;
+            appState.partnerName = data.partnerName || '我的爱人';
+            updateRoomStatus();
+            if (roomInfoMembers) roomInfoMembers.textContent = '2/' + appState.maxMembers;
+            showToast(`${appState.partnerName} 已加入房间`);
+            
+            // 更新成员列表
+            updateMembersList();
+            break;
+            
+          case 'PARTNER_LEFT':
+            // 伴侣离开
+            appState.partnerConnected = false;
+            updateRoomStatus();
+            if (roomInfoMembers) roomInfoMembers.textContent = '1/2';
+            showToast(`${data.memberName || appState.partnerName} 已离开房间`);
+            
+            // 更新成员列表
+            updateMembersList();
+            break;
+            
+          case 'VIDEO_SYNC':
+            // 视频同步
+            playVideo(data.url, data.title);
+            break;
+            
+          case 'PLAY_PAUSE_SYNC':
+            // 播放/暂停同步
+            if (data.isPlaying) {
+              mainVideo.play();
+              appState.isPlaying = true;
+            } else {
+              mainVideo.pause();
+              appState.isPlaying = false;
+            }
+            updateUI();
+            break;
+            
+          case 'PROGRESS_SYNC':
+            // 进度同步
+            if (Math.abs(mainVideo.currentTime - data.time) > 1) {
+              mainVideo.currentTime = data.time;
+              updateProgress();
+            }
+            break;
+            
+          case 'VOLUME_SYNC':
+            // 音量同步
+            mainVideo.volume = data.volume;
+            appState.volume = data.volume;
+            updateVolumeUI();
+            break;
+            
+          case 'CHAT_MESSAGE':
+            // 聊天消息
+            receiveMessage(data.user, data.message);
+            break;
+            
+          case 'REACTION':
+            // 反应
+            createHeartAnimation(
+              Math.random() * window.innerWidth,
+              Math.random() * window.innerHeight / 2 + window.innerHeight / 4
+            );
+            showToast(`收到了 ${data.reaction}`);
+            break;
+            
+          case 'VIDEO_ADDED':
+            // 视频添加
+            const video = data.video;
+            appState.videos.push(video);
+            addVideoToUI(video);
+            break;
+            
+          case 'VIDEO_DELETED':
+            // 视频删除
+            appState.videos = appState.videos.filter(v => v.id !== data.videoId);
+            showToast('视频已被删除');
+            break;
+            
+          case 'ERROR':
+            // 错误消息
+            showToast('错误: ' + data.message);
+            showMobileLoader(false);
+            break;
+            
+          case 'MEMBERS_LIST':
+            // 成员列表更新
+            updateMembersListFromServer(data.members, data.memberCount, data.maxMembers);
+            break;
+            
+          case 'ROOM_CLOSED':
+            // 房间已关闭
+            leaveRoom();
+            showToast('房间已关闭: ' + data.reason);
+            break;
+            
+          case 'SYNC_REQUEST':
+            // 收到同步请求
+            receiveSyncRequest();
+            break;
+            
+          case 'SYNC_REQUEST_SENT':
+            // 同步请求已发送
+            showToast(data.message);
+            break;
+            
+          default:
+            console.log('未知消息类型:', data.type);
+        }
+      } catch (error) {
+        console.error('处理WebSocket消息错误:', error);
+      }
+    }
+
     // 初始化
     function init() {
       // 检查URL参数，自动加入房间
@@ -986,32 +1092,7 @@
     
     // 加载示例视频
     function loadSampleVideos() {
-      appState.videos = [
-        {
-          id: 1,
-          title: '浪漫爱情故事',
-          url: 'https://example.com/videos/romance.mp4',
-          thumbnail: 'https://p26-doubao-search-sign.byteimg.com/labis/2827743b424861cfbace13c34b978be9~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=tmqZUgrX3rhL4PRMb8q4tzD3bXA%3D',
-          duration: '02:15:30',
-          addedAt: '2023-07-15'
-        },
-        {
-          id: 2,
-          title: '星空奇遇记',
-          url: 'https://example.com/videos/space.mp4',
-          thumbnail: 'https://p11-doubao-search-sign.byteimg.com/labis/860a0b8b4df681427f07f94673afc402~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873254&x-signature=%2Fj5dHcoK870H%2Bg%2BLR1JQZWorq28%3D',
-          duration: '01:48:22',
-          addedAt: '2023-07-10'
-        },
-        {
-          id: 3,
-          title: '电影院的回忆',
-          url: 'https://example.com/videos/cinema.mp4',
-          thumbnail: 'https://p26-doubao-search-sign.byteimg.com/labis/image/657380b2a51dec0497d5d38ad0e659ae~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=C461oUTx9TD5uWbtCj0e5OXuq0A%3D',
-          duration: '02:05:15',
-          addedAt: '2023-07-05'
-        }
-      ];
+      appState.videos = [];
     }
     
     // 设置事件监听
@@ -1087,9 +1168,9 @@
       // 弹幕控制
       danmakuBtn.addEventListener('click', toggleDanmaku);
       
-      // 文件上传
-      videoFileInput.addEventListener('change', handleFileSelect);
-      uploadVideoBtn.addEventListener('click', uploadVideoFile);
+      // 文件上传功能已移除
+      // videoFileInput.addEventListener('change', handleFileSelect);
+      // uploadVideoBtn.addEventListener('click', uploadVideoFile);
       
       // 快捷表情
       emojiButtons.forEach(button => {
@@ -1364,101 +1445,105 @@
       appState.danmakuList = [];
     }
     
-    // 处理文件选择
-    function handleFileSelect(e) {
-      const file = e.target.files[0];
-      
-      if (file) {
-        appState.currentUploadFile = file;
-        fileName.textContent = file.name;
-        uploadStatus.textContent = '';
-      }
-    }
+    // 文件上传功能已移除
+    // function handleFileSelect(e) {
+    //   const file = e.target.files[0];
+    //   
+    //   if (file) {
+    //     appState.currentUploadFile = file;
+    //     fileName.textContent = file.name;
+    //     uploadStatus.textContent = '';
+    //   }
+    // }
     
-    // 上传视频文件
-    function uploadVideoFile() {
-      const file = appState.currentUploadFile;
-      
-      if (!file) {
-        showToast('请先选择视频文件');
-        return;
-      }
-      
-      // 检查文件类型
-      if (!file.type.startsWith('video/')) {
-        showToast('请选择视频文件');
-        return;
-      }
-      
-      // 检查文件大小（限制100MB）
-      if (file.size > 100 * 1024 * 1024) {
-        showToast('视频文件大小不能超过100MB');
-        return;
-      }
-      
-      // 显示上传进度
-      uploadProgressContainer.classList.remove('hidden');
-      uploadProgressBar.style.width = '0%';
-      uploadStatus.textContent = '上传中...';
-      uploadStatus.classList.remove('text-green-400', 'text-red-400');
-      uploadStatus.classList.add('text-yellow-400');
-      
-      // 模拟上传进度
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 5;
-        uploadProgressBar.style.width = `${progress}%`;
-        
-        if (progress >= 100) {
-          clearInterval(interval);
-          
-          // 模拟上传完成
-          setTimeout(() => {
-            uploadStatus.textContent = '上传成功';
-            uploadStatus.classList.remove('text-yellow-400');
-            uploadStatus.classList.add('text-green-400');
-            
-            // 创建模拟视频URL
-            const videoUrl = `https://example.com/uploads/${Date.now()}.mp4`;
-            
-            // 添加视频到库
-            const newVideo = {
-              id: Date.now(),
-              title: file.name,
-              url: videoUrl,
-              thumbnail: 'https://p26-doubao-search-sign.byteimg.com/labis/34532e5a7270ea1b353518d43ceba717~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=LNvP1%2FvOiUK8qwpTUdpSiYs7QA8%3D',
-              duration: '00:00:00',
-              addedAt: new Date().toLocaleDateString()
-            };
-            
-            // 添加到应用状态
-            appState.videos.push(newVideo);
-            
-            // 添加到界面
-            addVideoToUI(newVideo);
-            
-            // 显示提示
-            showToast('视频上传成功并添加到库');
-            
-            // 如果有伴侣连接，同步视频库
-            if (appState.partnerConnected) {
-              // 模拟同步视频库
-              console.log('同步上传的视频:', newVideo);
-            }
-          }, 500);
-        }
-      }, 100);
-    }
+    // 上传视频文件功能已移除
+    // function uploadVideoFile() {
+    //   const file = appState.currentUploadFile;
+    //   
+    //   if (!file) {
+    //     showToast('请先选择视频文件');
+    //     return;
+    //   }
+    //   
+    //   // 检查文件类型
+    //   if (!file.type.startsWith('video/')) {
+    //     showToast('请选择视频文件');
+    //     return;
+    //   }
+    //   
+    //   // 检查文件大小（限制100MB）
+    //   if (file.size > 100 * 1024 * 1024) {
+    //     showToast('视频文件大小不能超过100MB');
+    //     return;
+    //   }
+    //   
+    //   // 显示上传进度
+    //   uploadProgressContainer.classList.remove('hidden');
+    //   uploadProgressBar.style.width = '0%';
+    //   uploadStatus.textContent = '上传中...';
+    //   uploadStatus.classList.remove('text-green-400', 'text-red-400');
+    //   uploadStatus.classList.add('text-yellow-400');
+    //   
+    //   // 模拟上传进度
+    //   let progress = 0;
+    //   const interval = setInterval(() => {
+    //     progress += 5;
+    //     uploadProgressBar.style.width = `${progress}%`;
+    //     
+    //     if (progress >= 100) {
+    //       clearInterval(interval);
+    //       
+    //       // 模拟上传完成
+    //       setTimeout(() => {
+    //         uploadStatus.textContent = '上传成功';
+    //         uploadStatus.classList.remove('text-yellow-400');
+    //         uploadStatus.classList.add('text-green-400');
+    //         
+    //         // 创建模拟视频URL
+    //         const videoUrl = `https://example.com/uploads/${Date.now()}.mp4`;
+    //         
+    //         // 添加视频到库
+    //         const newVideo = {
+    //           id: Date.now(),
+    //           title: file.name,
+    //           url: videoUrl,
+    //           thumbnail: 'https://p26-doubao-search-sign.byteimg.com/labis/34532e5a7270ea1b353518d43ceba717~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=LNvP1%2FvOiUK8qwpTUdpSiYs7QA8%3D',
+    //           duration: '00:00:00',
+    //           addedAt: new Date().toLocaleDateString()
+    //         };
+    //         
+    //         // 添加到应用状态
+    //         appState.videos.push(newVideo);
+    //         
+    //         // 添加到界面
+    //         addVideoToUI(newVideo);
+    //         
+    //         // 显示提示
+    //         showToast('视频上传成功并添加到库');
+    //         
+    //         // 如果有伴侣连接，同步视频库
+    //         if (appState.partnerConnected) {
+    //           // 模拟同步视频库
+    //           console.log('同步上传的视频:', newVideo);
+    //         }
+    //       }, 500);
+    //     }
+    //   }, 100);
+    // }
     
     // 切换播放/暂停
     function togglePlay() {
       if (mainVideo.paused) {
         mainVideo.play().then(() => {
           appState.isPlaying = true;
+          updateUI();
           
           // 如果有伴侣连接，同步播放状态
-          if (appState.partnerConnected) {
-            syncPlayState(true);
+          if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+            appState.ws.send(JSON.stringify({
+              type: 'PLAY_PAUSE_SYNC',
+              isPlaying: true
+            }));
           }
         }).catch(error => {
           console.error('播放失败:', error);
@@ -1467,13 +1552,16 @@
       } else {
         mainVideo.pause();
         appState.isPlaying = false;
+        updateUI();
         
-        // 如果有伴侣连接，同步同步播放状态
-        if (appState.partnerConnected) {
-          syncPlayState(false);
+        // 如果有伴侣连接，同步播放状态
+        if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+            appState.ws.send(JSON.stringify({
+              type: 'PLAY_PAUSE_SYNC',
+              isPlaying: false
+            }));
         }
       }
-      updateUI();
     }
     
     // 更新进度条
@@ -1490,8 +1578,15 @@
         appState.currentTime = mainVideo.currentTime;
         
         // 如果有伴侣连接，定期同步进度
-        if (appState.partnerConnected && Math.random() < 0.1) { // 10%的概率发送进度更新
-          syncProgress();
+        if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+          // 每5秒同步一次进度
+          if (!window.lastSyncTime || Date.now() - window.lastSyncTime > 5000) {
+            appState.ws.send(JSON.stringify({
+              type: 'PROGRESS_SYNC',
+              time: mainVideo.currentTime
+            }));
+            window.lastSyncTime = Date.now();
+          }
         }
       }
     }
@@ -1514,6 +1609,14 @@
       mainVideo.muted = !mainVideo.muted;
       appState.isMuted = mainVideo.muted;
       updateVolumeUI();
+      
+      // 如果有伴侣连接，同步音量
+      if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'VOLUME_SYNC',
+          volume: mainVideo.muted ? 0 : appState.volume
+        }));
+      }
     }
     
     // 更新音量UI
@@ -1546,6 +1649,14 @@
       appState.isMuted = volume === 0;
       
       updateVolumeUI();
+      
+      // 如果有伴侣连接，同步音量
+      if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'VOLUME_SYNC',
+          volume: volume
+        }));
+      }
     }
     
     // 跳转到指定位置
@@ -1558,8 +1669,11 @@
       mainVideo.currentTime = seekTime;
       
       // 如果有伴侣连接，同步进度
-      if (appState.partnerConnected) {
-        syncProgress();
+      if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'PROGRESS_SYNC',
+          time: mainVideo.currentTime
+        }));
       }
     }
     
@@ -1628,33 +1742,15 @@
         return;
       }
       
-      appState.isSyncing = true;
-      syncStatus.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i><span>同步中...</span>';
-      
-      // 模拟同步过程
-      setTimeout(() => {
-        // 跳转到伴侣的进度
-        mainVideo.currentTime = appState.partnerProgress;
-        
-        // 如果伴侣正在播放，也开始播放
-        if (appState.partnerIsPlaying) {
-          if (mainVideo.paused) {
-            togglePlay();
-          }
-        } else {
-          if (!mainVideo.paused) {
-            togglePlay();
-          }
-        }
-        
-        appState.isSyncing = false;
-        syncStatus.innerHTML = '<i class="fa fa-check mr-1"></i><span>已同步</span>';
-        showToast('已与伴侣同步');
-        
-        // 清除未读同步计数
-        appState.unreadSyncs = 0;
-        updateSyncBadge();
-      }, 1000);
+      // 通过WebSocket发送同步请求
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'REQUEST_SYNC'
+        }));
+        showToast('已请求与伴侣同步');
+      } else {
+        showToast('WebSocket连接已断开');
+      }
     }
     
     // 更新同步状态
@@ -1670,73 +1766,75 @@
     function syncPlayState(isPlaying) {
       if (!appState.partnerConnected) return;
       
-      // 模拟发送播放状态
-      console.log('同步播放状态:', isPlaying);
-      
-      // 在实际应用中，这里会发送WebSocket消息
-      // socket.emit('sync-play-state', { roomId: appState.roomId, isPlaying });
+      // 通过WebSocket发送播放状态同步消息
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'PLAY_PAUSE_SYNC',
+          isPlaying: isPlaying
+        }));
+        console.log('同步播放状态:', isPlaying);
+      }
     }
     
     // 同步进度
     function syncProgress() {
       if (!appState.partnerConnected) return;
       
-      // 模拟发送进度
-      console.log('同步进度:', mainVideo.currentTime);
-      
-      // 在实际应用中，这里会发送WebSocket消息
-      // socket.emit('sync-progress', { roomId: appState.roomId, progress: mainVideo.currentTime });
+      // 通过WebSocket发送进度同步消息
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'PROGRESS_SYNC',
+          time: mainVideo.currentTime
+        }));
+        console.log('同步进度:', mainVideo.currentTime);
+      }
     }
     
+    // 生成随机昵称
+    function generateRandomName() {
+      const nicknames = [
+        '小可爱', '宝贝', '亲爱的', '心肝', '小甜心', '小宝贝', '小笨蛋',
+        '小傻瓜', '小猫咪', '小狗狗', '小熊熊', '小兔子', '小天使', '小恶魔',
+        '小公举', '小王子', '小骑士', '小公主', '小甜饼', '小奶糖', '小布丁',
+        '小果冻', '小樱桃', '小草莓', '小柠檬', '小苹果', '小桃子', '小葡萄',
+        '小西瓜', '小哈密瓜'
+      ];
+      return nicknames[Math.floor(Math.random() * nicknames.length)];
+    }
+
     // 创建房间
     function createRoom() {
       console.log('开始创建房间');
       showMobileLoader(true);
       
-      try {
-        // 模拟创建房间
-        setTimeout(() => {
-          try {
-            console.log('房间创建完成，生成房间ID');
-            // 生成随机房间ID
-            appState.roomId = Math.random().toString(36).substring(2, 8).toUpperCase();
-            appState.isHost = true;
-            
-            console.log('更新房间信息UI');
-            // 更新房间信息
-            if (roomInfoId) roomInfoId.textContent = appState.roomId;
-            if (roomInfoTime) roomInfoTime.textContent = new Date().toLocaleString();
-            if (roomInfoMembers) roomInfoMembers.textContent = '1/2';
-            
-            console.log('更新顶部状态栏');
-            // 更新顶部状态栏
-            if (roomId) roomId.textContent = appState.roomId;
-            if (roomStatus) roomStatus.style.opacity = '1';
-            
-            console.log('显示成功提示');
-            // 显示成功提示
-            showToast(`房间创建成功！房间ID: ${appState.roomId}`);
-            
-            console.log('设置模拟伴侣加入定时器');
-            // 模拟伴侣加入
-            setTimeout(() => {
-              console.log('模拟伴侣加入');
-              simulatePartnerJoin();
-            }, 3000);
-            
-            console.log('隐藏加载动画');
-            showMobileLoader(false);
-          } catch (error) {
-            console.error('创建房间过程中出错:', error);
-            showToast('创建房间失败，请重试');
-            showMobileLoader(false);
-          }
-        }, 1500);
-      } catch (error) {
-        console.error('创建房间初始化出错:', error);
-        showToast('创建房间失败，请重试');
-        showMobileLoader(false);
-      }
+      // 生成随机昵称作为伴侣名字
+      appState.partnerName = generateRandomName();
+      
+      // 连接WebSocket
+      connectWebSocket();
+      
+      // 等待连接建立后发送创建房间请求
+      const checkConnection = setInterval(() => {
+        if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+          clearInterval(checkConnection);
+          appState.ws.send(JSON.stringify({
+            type: 'CREATE_ROOM'
+          }));
+        } else if (appState.ws && appState.ws.readyState === WebSocket.CLOSED) {
+          clearInterval(checkConnection);
+          showToast('WebSocket连接失败，请重试');
+          showMobileLoader(false);
+        }
+      }, 100);
+      
+      // 设置超时时间
+      setTimeout(() => {
+        clearInterval(checkConnection);
+        if (!appState.ws || appState.ws.readyState !== WebSocket.OPEN) {
+          showToast('WebSocket连接超时，请重试');
+          showMobileLoader(false);
+        }
+      }, 5000);
     }
     
     // 加入房间
@@ -1750,34 +1848,38 @@
       
       showMobileLoader(true);
       
-      // 模拟加入房间
+      // 连接WebSocket
+      connectWebSocket();
+      
+      // 等待连接建立后发送加入房间请求
       setTimeout(() => {
-        appState.roomId = roomId;
-        appState.isHost = false;
-        
-        // 更新房间信息
-        roomInfoId.textContent = appState.roomId;
-        roomInfoTime.textContent = new Date().toLocaleString();
-        roomInfoMembers.textContent = '2/2';
-        
-        // 更新顶部状态栏
-        roomId.textContent = appState.roomId;
-        roomStatus.style.opacity = '1';
-        
-        // 显示成功提示
-        showToast(`成功加入房间: ${appState.roomId}`);
-        
-        // 模拟伴侣已在房间
-        simulatePartnerJoin();
-        
-        showMobileLoader(false);
-        joinRoomForm.classList.add('hidden');
-        joinRoomId.value = '';
-      }, 1500);
+        if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+          appState.ws.send(JSON.stringify({
+            type: 'JOIN_ROOM',
+            roomId: roomId
+          }));
+        } else {
+          showToast('WebSocket连接失败，请重试');
+          showMobileLoader(false);
+        }
+      }, 500);
     }
     
     // 离开房间
     function leaveRoom() {
+      // 发送离开房间请求
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'LEAVE_ROOM'
+        }));
+      }
+      
+      // 关闭WebSocket连接
+      if (appState.ws) {
+        appState.ws.close();
+        appState.ws = null;
+      }
+      
       // 重置应用状态
       appState.roomId = null;
       appState.isHost = false;
@@ -1809,7 +1911,7 @@
       closeAllPanels();
     }
     
-    // 模拟伴侣加入
+    // 处理伴侣加入
     function simulatePartnerJoin() {
       appState.partnerConnected = true;
       appState.partnerIsPlaying = false;
@@ -1819,36 +1921,11 @@
       connectionStatus.classList.add('bg-green-500');
       partnerStatus.textContent = `${appState.partnerName} 已加入`;
       
-      // 更新成员列表
-      const memberItem = membersList.children[1];
-      memberItem.querySelector('.text-xs').classList.remove('text-gray-400');
-      memberItem.querySelector('.text-xs').classList.add('text-green-400');
-      memberItem.querySelector('.text-xs').textContent = '在线';
+      // 使用updateMembersList函数更新成员列表
+      updateMembersList();
       
       // 显示提示
       showToast(`${appState.partnerName} 已加入房间`);
-      
-      // 模拟伴侣发送消息
-      setTimeout(() => {
-        receiveMessage(`${appState.partnerName}`, '嗨，宝贝！我来了！');
-      }, 2000);
-      
-      // 模拟伴侣发送进度
-      setInterval(() => {
-        if (appState.partnerConnected && appState.partnerIsPlaying) {
-          appState.partnerProgress += 0.5;
-          if (appState.partnerProgress > appState.duration) {
-            appState.partnerProgress = 0;
-          }
-          const progress = (appState.partnerProgress / appState.duration) * 100;
-          partnerProgress.style.width = `${progress}%`;
-        }
-      }, 500);
-      
-      // 模拟伴侣请求同步
-      setTimeout(() => {
-        receiveSyncRequest();
-      }, 5000);
     }
     
     // 发送消息
@@ -1868,26 +1945,14 @@
       // 清空输入框
       messageInput.value = '';
       
-      // 如果有伴侣连接，模拟发送消息
-      if (appState.partnerConnected) {
-        // 模拟网络延迟
-        setTimeout(() => {
-          // 模拟伴侣回复
-          if (Math.random() > 0.5) {
-            const replies = [
-              '好的',
-              '我知道了',
-              '爱你 ❤️',
-              '哈哈哈',
-              '真好看',
-              '继续看电影吧',
-              '想你了 😘',
-              '你真好'
-            ];
-            const randomReply = replies[Math.floor(Math.random() * replies.length)];
-            receiveMessage(appState.partnerName, randomReply);
-          }
-        }, 1000);
+      // 如果有伴侣连接，通过WebSocket发送消息
+      if (appState.partnerConnected && appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'CHAT_MESSAGE',
+          message: message
+        }));
+      } else if (appState.partnerConnected) {
+        showToast('WebSocket连接已断开');
       } else {
         showToast('没有连接到伴侣');
       }
@@ -1908,11 +1973,72 @@
       }
     }
     
+    // 生成随机头像
+    function generateAvatar(sender) {
+      const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'];
+      
+      // 使用发送者名称作为种子生成一致的颜色
+      const colorIndex = (sender.charCodeAt(0) + sender.length) % colors.length;
+      const color = colors[colorIndex];
+      
+      // 获取首字母，处理中文字符
+      const firstChar = sender.charAt(0).toUpperCase();
+      const displayChar = /[a-zA-Z]/.test(firstChar) ? firstChar : '👤';
+      
+      // 创建SVG头像
+      const svg = `
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="${color}"/>
+          <text x="16" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="white">
+            ${displayChar}
+          </text>
+        </svg>
+      `;
+      
+      // 使用更安全的编码方法处理Unicode字符
+      try {
+        return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
+      } catch (e) {
+        // 如果编码失败，使用备用方法
+        const canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        
+        // 绘制圆形背景
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(16, 16, 16, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // 绘制文字
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 14px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(displayChar, 16, 16);
+        
+        return canvas.toDataURL();
+      }
+    }
+    
     // 添加消息到界面
     function addMessage(sender, content, type) {
       const messageDiv = document.createElement('div');
       messageDiv.className = `message ${type}`;
-      messageDiv.innerHTML = `<p>${content}</p>`;
+      
+      // 生成头像
+      const avatarUrl = generateAvatar(sender);
+      
+      messageDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <img src="${avatarUrl}" alt="${sender}" class="w-8 h-8 rounded-full flex-shrink-0">
+          <div class="flex-1">
+            <div class="text-xs text-gray-400 mb-1">${sender}</div>
+            <p class="text-sm">${content}</p>
+          </div>
+        </div>
+      `;
       
       messagesContainer.appendChild(messageDiv);
       
@@ -1955,6 +2081,53 @@
       
       // 显示提示
       showToast(`${appState.partnerName} 请求同步`);
+      
+      // 自动同步到伴侣的进度和播放状态
+      if (appState.isHost) {
+        // 作为房主，发送当前视频状态给伴侣
+        if (mainVideo.src) {
+          // 发送视频同步消息
+          if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+            appState.ws.send(JSON.stringify({
+              type: 'VIDEO_SYNC',
+              url: mainVideo.src,
+              title: videoTitle.textContent || ''
+            }));
+          }
+          
+          // 发送播放状态同步消息
+          syncPlayState(!mainVideo.paused);
+          
+          // 发送进度同步消息
+          syncProgress();
+        }
+      } else {
+        // 作为访客，跳转到房主的进度
+        appState.isSyncing = true;
+        syncStatus.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i><span>同步中...</span>';
+        
+        // 跳转到房主的进度
+        mainVideo.currentTime = appState.partnerProgress;
+        
+        // 如果房主正在播放，也开始播放
+        if (appState.partnerIsPlaying) {
+          if (mainVideo.paused) {
+            togglePlay();
+          }
+        } else {
+          if (!mainVideo.paused) {
+            togglePlay();
+          }
+        }
+        
+        appState.isSyncing = false;
+        syncStatus.innerHTML = '<i class="fa fa-check mr-1"></i><span>已同步</span>';
+        showToast('已与房主同步');
+      }
+      
+      // 清除未读同步计数
+      appState.unreadSyncs = 0;
+      updateSyncBadge();
     }
     
     // 更新同步徽章
@@ -1969,6 +2142,18 @@
       }
     }
     
+    // 生成视频缩略图 - 使用视频首帧截图 (已修复同步功能)
+    function generateVideoThumbnail(url) {
+      // 对于所有视频类型，都使用视频的第一帧作为缩略图
+      if (url.match(/\.(mp4|webm|ogg|avi|mov)$/i) || url.includes('youtube.com') || url.includes('youtu.be') || url.includes('vimeo.com') || url.includes('bilibili.com')) {
+        // 获取第0.1秒的帧作为缩略图
+        return url + '#t=0.1';
+      }
+      
+      // 默认缩略图
+      return 'https://via.placeholder.com/320x180/4a5568/ffffff?text=视频';
+    }
+    
     // 添加视频
     function addVideo() {
       const url = videoUrlInput.value.trim();
@@ -1978,13 +2163,21 @@
         return;
       }
       
-      // 模拟添加视频
+      // 生成缩略图
+      const thumbnail = generateVideoThumbnail(url);
+      
+      // 生成简单标题
+      function generateVideoTitle(url) {
+        return '视频';
+      }
+      
+      // 创建视频对象
       const newVideo = {
         id: Date.now(),
-        title: '新添加的视频',
+        title: generateVideoTitle(url),
         url: url,
-        thumbnail: 'https://p26-doubao-search-sign.byteimg.com/labis/34532e5a7270ea1b353518d43ceba717~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&x-expires=1765873255&x-signature=LNvP1%2FvOiUK8qwpTUdpSiYs7QA8%3D',
-        duration: '00:00:00',
+        thumbnail: thumbnail,
+        duration: '00:00',
         addedAt: new Date().toLocaleDateString()
       };
       
@@ -1994,17 +2187,21 @@
       // 添加到界面
       addVideoToUI(newVideo);
       
+      // 通过WebSocket发送视频添加消息到后端
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'ADD_VIDEO',
+          video: newVideo
+        }));
+      } else {
+        showToast('WebSocket连接已断开');
+      }
+      
       // 清空输入框
       videoUrlInput.value = '';
       
       // 显示提示
       showToast('视频添加成功');
-      
-      // 如果有伴侣连接，同步视频库
-      if (appState.partnerConnected) {
-        // 模拟同步视频库
-        console.log('同步视频库');
-      }
     }
     
     // 添加视频到界面
@@ -2012,17 +2209,14 @@
       const videoItem = document.createElement('div');
       videoItem.className = 'video-item bg-gray-800 rounded-lg overflow-hidden';
       videoItem.innerHTML = `
-        <div class="relative">
-          <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-40 object-cover">
-          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2">
-            <span class="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded">${video.duration}</span>
-          </div>
+        <div class="relative h-40">
+          <img src="${video.thumbnail}" alt="${video.title}" class="w-full h-full object-cover">
           <button class="play-video absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 flex items-center justify-center text-white hover:bg-primary transition-colors" data-url="${video.url}">
             <i class="fa fa-play"></i>
           </button>
         </div>
         <div class="p-3">
-          <h3 class="text-white font-medium mb-1">${video.title}</h3>
+          <h3 class="text-white font-medium mb-1 truncate">${video.title}</h3>
           <div class="flex justify-between items-center text-xs text-gray-400">
             <span>添加于 ${video.addedAt}</span>
             <button class="delete-video text-red-400 hover:text-red-500" data-id="${video.id}">
@@ -2082,11 +2276,18 @@
     function syncVideo(url, title) {
       if (!appState.partnerConnected) return;
       
-      // 模拟发送视频同步请求
-      console.log('同步视频:', url, title);
-      
-      // 显示提示
-      showToast(`已同步视频: ${title}`);
+      // 通过WebSocket发送视频同步消息
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'VIDEO_SYNC',
+          url: url,
+          title: title
+        }));
+        console.log('同步视频:', url, title);
+        showToast(`已同步视频: ${title}`);
+      } else {
+        showToast('WebSocket连接已断开');
+      }
     }
     
     // 删除视频
@@ -2099,8 +2300,14 @@
       
       // 如果有伴侣连接，同步删除
       if (appState.partnerConnected) {
-        // 模拟同步删除
-        console.log('同步删除视频:', id);
+        // 通过WebSocket发送视频删除消息
+        if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+          appState.ws.send(JSON.stringify({
+            type: 'DELETE_VIDEO',
+            id: id
+          }));
+          console.log('同步删除视频:', id);
+        }
       }
     }
     
@@ -2108,13 +2315,18 @@
     function sendReaction(reaction) {
       if (!appState.partnerConnected) return;
       
-      // 模拟发送反应
+      // 发送反应
       console.log('发送反应:', reaction);
       
-      // 模拟伴侣接收反应
-      setTimeout(() => {
-        receiveReaction(reaction);
-      }, 500);
+      // 通过WebSocket发送反应消息
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+        appState.ws.send(JSON.stringify({
+          type: 'REACTION',
+          reaction: reaction
+        }));
+      } else {
+        showToast('WebSocket连接已断开');
+      }
     }
     
     // 接收反应
@@ -2126,7 +2338,7 @@
       );
       
       // 显示提示
-      showToast(`${appState.partnerName} 发送了 ${reaction}`);
+      showToast(`${reaction}`);
     }
     
     // 创建爱心动画
@@ -2189,6 +2401,131 @@
         roomStatus.style.opacity = '0';
       }
     }
+
+
+    
+    // 从服务器更新成员列表（实时显示）
+    function updateMembersListFromServer(members, memberCount, maxMembers) {
+      if (!appState.roomId) return;
+      
+      // 存储maxMembers值
+      if (maxMembers) {
+        appState.maxMembers = maxMembers;
+      }
+      
+      // 清空现有成员列表
+      membersList.innerHTML = '';
+      
+      // 如果没有成员，显示等待状态
+      if (!members || members.length === 0) {
+        const waitingItem = document.createElement('div');
+        waitingItem.className = 'flex items-center justify-between p-3 bg-gray-800 rounded-lg';
+        waitingItem.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-medium mr-3">
+              ?
+            </div>
+            <div>
+              <div class="text-white">等待成员加入</div>
+              <div class="text-xs text-gray-400">0/${appState.maxMembers || 2}</div>
+            </div>
+          </div>
+        `;
+        membersList.appendChild(waitingItem);
+        return;
+      }
+      
+      // 遍历所有成员并显示
+      members.forEach((member, index) => {
+        const memberItem = document.createElement('div');
+        memberItem.className = 'flex items-center justify-between p-3 bg-gray-800 rounded-lg';
+        
+        // 获取成员显示名称和头像
+        const displayName = member.name;
+        const isCurrentUser = member.isHost && appState.isHost;
+        const avatarText = isCurrentUser ? '我' : (index + 1).toString();
+        const avatarColor = isCurrentUser ? 'bg-primary' : 'bg-secondary';
+        const statusText = member.status === 'online' ? '在线' : '离线';
+        const statusColor = member.status === 'online' ? 'text-green-400' : 'text-gray-400';
+        const roleTag = member.isHost ? '<div class="text-xs bg-gray-700 px-2 py-1 rounded-full">房主</div>' : '';
+        
+        memberItem.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full ${avatarColor} flex items-center justify-center text-white font-medium mr-3">
+              ${avatarText}
+            </div>
+            <div>
+              <div class="text-white">${displayName}</div>
+              <div class="text-xs ${statusColor}">${statusText}</div>
+            </div>
+          </div>
+          ${roleTag}
+        `;
+        
+        membersList.appendChild(memberItem);
+      });
+      
+      // 更新房间信息中的成员数量
+      if (roomInfoMembers) {
+        roomInfoMembers.textContent = `${memberCount}/${appState.maxMembers || 2}`;
+      }
+    }
+    
+    // 兼容旧的成员列表更新函数（现在调用新的实时版本）
+    function updateMembersList() {
+      // 如果WebSocket连接正常，请求最新的成员列表
+      if (appState.ws && appState.ws.readyState === WebSocket.OPEN && appState.roomId) {
+        appState.ws.send(JSON.stringify({
+          type: 'REQUEST_MEMBERS_LIST'
+        }));
+      } else {
+        // 如果没有WebSocket连接，使用旧的逻辑
+        updateMembersListFallback();
+      }
+    }
+    
+    // 旧的成员列表显示逻辑（作为后备）
+    function updateMembersListFallback() {
+      if (!appState.roomId) return;
+      
+      // 清空现有成员列表
+      membersList.innerHTML = '';
+      
+      // 添加当前用户（房主）
+      const currentUserItem = document.createElement('div');
+      currentUserItem.className = 'flex items-center justify-between p-3 bg-gray-800 rounded-lg';
+      currentUserItem.innerHTML = `
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3">
+            我
+          </div>
+          <div>
+            <div class="text-white">我</div>
+            <div class="text-xs text-green-400">在线</div>
+          </div>
+        </div>
+        <div class="text-xs bg-gray-700 px-2 py-1 rounded-full">房主</div>
+      `;
+      membersList.appendChild(currentUserItem);
+      
+      // 如果有伴侣连接，添加伴侣成员
+      if (appState.partnerConnected) {
+        const partnerItem = document.createElement('div');
+        partnerItem.className = 'flex items-center justify-between p-3 bg-gray-800 rounded-lg';
+        partnerItem.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-medium mr-3">
+              你
+            </div>
+            <div>
+              <div class="text-white">${appState.partnerName}</div>
+              <div class="text-xs text-green-400">在线</div>
+            </div>
+          </div>
+        `;
+        membersList.appendChild(partnerItem);
+      }
+    }
     
     // 显示提示消息
     function showToast(message) {
@@ -2235,28 +2572,32 @@
         // 显示加载动画
         showMobileLoader(true);
         
-        // 模拟加入房间
+        // 连接WebSocket并加入房间
+        connectWebSocket();
+        
+        // 等待连接建立后发送加入房间请求
+        const checkConnection = setInterval(() => {
+          if (appState.ws && appState.ws.readyState === WebSocket.OPEN) {
+            clearInterval(checkConnection);
+            appState.ws.send(JSON.stringify({
+              type: 'JOIN_ROOM',
+              roomId: roomId
+            }));
+          } else if (appState.ws && appState.ws.readyState === WebSocket.CLOSED) {
+            clearInterval(checkConnection);
+            showToast('WebSocket连接失败，请重试');
+            showMobileLoader(false);
+          }
+        }, 100);
+        
+        // 设置超时时间
         setTimeout(() => {
-          // 更新房间信息
-          roomInfoId.textContent = appState.roomId;
-          roomInfoTime.textContent = new Date().toLocaleString();
-          roomInfoMembers.textContent = '2/2';
-          
-          // 更新顶部状态栏
-          roomId.textContent = appState.roomId;
-          roomStatus.style.opacity = '1';
-          
-          // 显示成功提示
-          showToast(`通过链接自动加入房间: ${appState.roomId}`);
-          
-          // 模拟伴侣已在房间
-          simulatePartnerJoin();
-          
-          showMobileLoader(false);
-          
-          // 打开房间面板
-          togglePanel(roomPanel);
-        }, 1500);
+          clearInterval(checkConnection);
+          if (!appState.ws || appState.ws.readyState !== WebSocket.OPEN) {
+            showToast('WebSocket连接超时，请重试');
+            showMobileLoader(false);
+          }
+        }, 5000);
       }
     }
     
