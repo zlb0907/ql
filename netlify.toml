@@ -32,13 +32,15 @@
     Cache-Control = "public, max-age=31536000"
 
 # API代理配置（用于后端服务）
+# ⚠️ 重要：请将 your-backend-service 替换为你的实际Render服务名称
 [[redirects]]
   from = "/api/*"
-  to = "https://your-backend-service.onrender.com/api/:splat"
+  to = "https://couple-sync-video-server.onrender.com/api/:splat"
   status = 200
 
 # WebSocket代理配置
+# ⚠️ 重要：请将 your-backend-service 替换为你的实际Render服务名称
 [[redirects]]
   from = "/ws"
-  to = "wss://your-backend-service.onrender.com"
+  to = "wss://couple-sync-video-server.onrender.com"
   status = 200
