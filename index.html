@@ -855,11 +855,10 @@
         // 本地开发环境
         local: `${protocol}//${host}/ws`,
         
-        // Render部署的后端服务（替换为你的实际Render URL）
-        render: 'wss://couple-sync-video-server.onrender.com/ws',
-        
-        // 其他可选的后端服务
+        // Railway部署的后端服务（替换为你的实际Railway URL）
         railway: 'wss://your-app-name.up.railway.app/ws',
+        
+        // Heroku部署的后端服务（替换为你的实际Heroku URL）
         heroku: 'wss://your-app-name.herokuapp.com/ws'
       };
       
@@ -869,8 +868,8 @@
         return websocketConfig.local;
       } else if (window.location.hostname.includes('netlify.app')) {
         // Netlify部署 - 使用外部WebSocket服务
-        // ⚠️ 重要：请替换为你的实际Render服务URL
-        return websocketConfig.render;
+        // ⚠️ 重要：请替换为你的实际后端服务URL（如Railway或Heroku）
+        return websocketConfig.railway; // 默认使用Railway，可以改为heroku
       } else {
         // 其他部署环境，尝试使用相对路径
         return `${protocol}//${host}/ws`;
