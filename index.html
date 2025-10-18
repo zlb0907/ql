@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情侣同步观影 - 一起看电影</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <h1>情侣同步观影</h1>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div class="avatar" id="userAvatar"></div>
+                <span class="username" id="username">用户</span>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 房间选择界面 -->
+            <div class="room-selection" id="roomSelection">
+                <div class="welcome-section">
+                    <h2>💕 一起看电影吧</h2>
+                    <p>创建房间，邀请你的另一半，同步观看视频</p>
+                </div>
+                
+                <div class="room-controls">
+                    <div class="input-group">
+                        <input type="text" id="roomId" placeholder="输入房间号（或留空创建新房间）" maxlength="20">
+                        <input type="text" id="userName" placeholder="输入你的名字" maxlength="10" value="用户">
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="createRoomBtn">
+                            <i class="fas fa-plus"></i> 创建房间
+                        </button>
+                        <button class="btn btn-secondary" id="joinRoomBtn">
+                            <i class="fas fa-sign-in-alt"></i> 加入房间
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 观影界面 -->
+            <div class="viewing-room" id="viewingRoom" style="display: none;">
+                <!-- 视频区域 -->
+                <div class="video-section">
+                    <div class="video-container">
+                        <video id="videoPlayer" controls>
+                            <source src="" type="video/mp4">
+                            您的浏览器不支持视频播放
+                        </video>
+                        <div class="video-controls">
+                            <div class="sync-status" id="syncStatus">
+                                <i class="fas fa-circle"></i>
+                                <span>同步状态</span>
+                            </div>
+                            <div class="video-actions">
+                                <button class="btn-icon" id="syncPlayBtn" title="同步播放">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="btn-icon" id="syncPauseBtn" title="同步暂停">
+                                    <i class="fas fa-pause"></i>
+                                </button>
+                                <button class="btn-icon" id="syncSeekBtn" title="同步进度">
+                                    <i class="fas fa-sync"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="sidebar">
+                    <!-- 房间信息 -->
+                    <div class="room-info">
+                        <h3>房间信息</h3>
+                        <div class="room-id">
+                            <span>房间号: </span>
+                            <strong id="currentRoomId"></strong>
+                            <button class="btn-copy" id="copyRoomId" title="复制房间号">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="room-users">
+                            <span>在线用户: </span>
+                            <strong id="userCount">0</strong>
+                        </div>
+                    </div>
+
+                    <!-- 用户列表 -->
+                    <div class="users-list">
+                        <h3>在线用户</h3>
+                        <div id="usersList" class="users-container"></div>
+                    </div>
+
+                    <!-- 聊天区域 -->
+                    <div class="chat-section">
+                        <h3>聊天室</h3>
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <div class="chat-input">
+                            <input type="text" id="messageInput" placeholder="输入消息..." maxlength="200">
+                            <button id="sendMessageBtn" class="btn-send">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 反应表情 -->
+                    <div class="reactions-section">
+                        <h3>发送表情</h3>
+                        <div class="reactions-grid">
+                            <button class="reaction-btn" data-reaction="❤️">❤️</button>
+                            <button class="reaction-btn" data-reaction="😍">😍</button>
+                            <button class="reaction-btn" data-reaction="😂">😂</button>
+                            <button class="reaction-btn" data-reaction="😭">😭</button>
+                            <button class="reaction-btn" data-reaction="😱">😱</button>
+                            <button class="reaction-btn" data-reaction="👍">👍</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部 -->
+        <footer class="footer">
+            <p>💕 情侣同步观影应用 - 让距离不再是问题</p>
+        </footer>
+    </div>
+
+    <!-- 浮动表情 -->
+    <div id="floatingReactions" class="floating-reactions"></div>
+
+    <!-- 通知 -->
+    <div id="notifications" class="notifications"></div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
