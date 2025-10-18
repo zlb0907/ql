@@ -1,0 +1,59 @@
+[build]
+  # 构建命令
+  command = "npm install && npm run build"
+  
+  # 发布目录
+  publish = "public"
+  
+  # 函数目录（用于Netlify Functions）
+  functions = "netlify/functions"
+
+[build.environment]
+  # Node.js版本
+  NODE_VERSION = "18"
+
+# API路由配置
+[[redirects]]
+  # API请求重定向到Netlify Function
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true
+
+# WebSocket升级配置
+[[redirects]]
+  # WebSocket连接重定向（需要外部服务）
+  from = "/ws"
+  to = "https://your-websocket-server.herokuapp.com/ws"
+  status = 200
+  force = true
+
+# 主页面配置
+[[redirects]]
+  # SPA路由支持
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# HTTP头设置
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 安全头
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+  # 静态资源缓存
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# 开发服务器配置
+[dev]
+  command = "npm run dev"
+  port = 8888
+  targetPort = 3000
+  publish = "public"
+  autoLaunch = true
